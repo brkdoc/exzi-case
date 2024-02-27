@@ -1,0 +1,594 @@
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:paddingVertical="10dp"
+    android:paddingHorizontal="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/trade"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:padding="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewCrypto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pair_arrow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="BTC/USDT"
+                android:textSize="13sp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/imageViewCrypto"
+                app:layout_constraintTop_toTopOf="@id/imageViewCrypto"
+                app:layout_constraintBottom_toBottomOf="@id/imageViewCrypto" />
+
+            <TextView
+                android:id="@+id/textViewPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+2.44%"
+                android:textSize="11sp"
+                android:textColor="@color/green"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@id/textViewSymbol"
+                app:layout_constraintTop_toTopOf="@id/textViewSymbol"
+                app:layout_constraintBottom_toBottomOf="@id/textViewSymbol" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buy_sell_buttons"
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/header"
+            app:layout_constraintEnd_toEndOf="@id/header"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <Button
+                android:id="@+id/buttonBuy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Buy"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/green"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/buttonSell"/>
+
+            <Button
+                android:id="@+id/buttonSell"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Sell"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/buttonBuy"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/spinnerLyt"
+            android:layout_marginTop="10dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/buy_sell_buttons"
+            app:layout_constraintStart_toStartOf="@id/buy_sell_buttons"
+            app:layout_constraintTop_toBottomOf="@id/buy_sell_buttons"
+            android:background="@drawable/rounded_background"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/infoIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/info"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/infoIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/infoIcon"
+                app:layout_constraintBottom_toBottomOf="@id/infoIcon" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/amountInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/spinnerLyt"
+            app:layout_constraintStart_toStartOf="@id/buy_sell_buttons"
+            app:layout_constraintEnd_toEndOf="@id/buy_sell_buttons"
+            android:padding="10dp"
+            android:background="@drawable/rounded_background">
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textSize="12sp"
+                android:text="42719.1"
+                android:textColor="#FFF"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/buttonMinus"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:backgroundTint="@color/white"
+                android:text="-"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toStartOf="@id/buttonPlus"
+                app:layout_constraintTop_toTopOf="@id/buttonPlus"
+                app:layout_constraintBottom_toBottomOf="@id/buttonPlus" />
+
+            <TextView
+                android:id="@+id/buttonPlus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:textColor="@color/white"
+                android:text="+"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/textViewCurrency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=1.21 USD"
+            android:textColor="@color/textGray"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amountInput" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cryptoAmountLyt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/textViewCurrency"
+            app:layout_constraintStart_toStartOf="@id/amountInput"
+            app:layout_constraintEnd_toEndOf="@id/amountInput"
+            android:padding="10dp"
+            android:background="@drawable/rounded_background">
+
+            <EditText
+                android:id="@+id/editTextAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:hint="Amount"
+                android:layout_marginEnd="5dp"
+                android:inputType="numberDecimal"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#AAAAAA"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textViewCurrencyUnit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewCurrencyUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="BTC"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/editTextAmount"
+                app:layout_constraintTop_toTopOf="@id/editTextAmount" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/seekBarLyt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/cryptoAmountLyt"
+            app:layout_constraintStart_toStartOf="@id/cryptoAmountLyt"
+            app:layout_constraintEnd_toEndOf="@id/cryptoAmountLyt"
+            android:paddingVertical="10dp"
+            android:orientation="vertical">
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:max="4"
+                android:layout_marginBottom="8dp"/>
+
+            <LinearLayout
+                android:layout_marginHorizontal="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="0%"
+                    android:textColor="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="25%"
+                    android:textColor="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="50%"
+                    android:textColor="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="75%"
+                    android:textColor="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="start"
+                    android:text="100%"
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/totalAmountContainerLyt"
+            app:layout_constraintTop_toBottomOf="@id/seekBarLyt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/seekBarLyt"
+            app:layout_constraintEnd_toEndOf="@id/seekBarLyt"
+            android:paddingVertical="10dp"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/totalAmountLyt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="10dp"
+                android:background="@drawable/rounded_background">
+
+                <EditText
+                    android:id="@+id/editTextTotalAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Amount"
+                    android:inputType="numberDecimal"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#AAAAAA"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewDolarUnit"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewDolarUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="USDT"
+                    android:textColor="#FFFFFF"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/editTextTotalAmount"
+                    app:layout_constraintTop_toTopOf="@id/editTextTotalAmount" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@id/totalAmountLyt"
+                app:layout_constraintEnd_toEndOf="@id/totalAmountLyt"
+                app:layout_constraintTop_toBottomOf="@id/totalAmountLyt"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Max. Buy"
+                    android:textColor="#FFFFFF"
+                    android:gravity="start"/>
+
+                <TextView
+                    android:id="@+id/textViewMaxBuy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.00 BTC"
+                    android:textColor="#FFFFFF"
+                    android:layout_gravity="end"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <Button
+            android:id="@+id/buttonOrder"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Buy"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/green"
+            app:layout_constraintStart_toStartOf="@id/buy_sell_buttons"
+            app:layout_constraintTop_toBottomOf="@id/totalAmountContainerLyt"
+            app:layout_constraintEnd_toEndOf="@id/buy_sell_buttons"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/orderBook"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="true"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/trade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/trade"
+        app:layout_constraintTop_toTopOf="@id/trade">
+
+        <ImageView
+            android:id="@+id/imageViewCandle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/market"
+            app:layout_constraintEnd_toStartOf="@id/moreButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/moreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text=". . ."
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/white" />
+
+        <TextView
+            android:id="@+id/priceLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="30dp"
+            android:text="Price(USDT)"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@id/quantityLabel"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moreButton"
+            app:tint="@color/white" />
+        <TextView
+            android:id="@+id/quantityLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="Quantity(ARB)"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/priceLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/priceLabel"
+            app:tint="@color/white" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/buyScroll"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/priceLabel">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOrderBookBuy"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    />
+            </FrameLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/textViewAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:layout_marginTop="10dp"
+            android:text="42.897.99"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/buyScroll"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/textViewEquivalent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="=$42,893.05"
+            android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/textViewAmount"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/sellScroll"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewEquivalent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewOrderBookSell"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"/>
+            </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/spinnerSelectorLyt"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/rounded_background"
+            android:padding="8dp">
+
+            <Spinner
+                android:id="@+id/spinnerSelector"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:spinnerMode="dropdown"
+                android:dropDownWidth="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <ImageView
+            android:id="@+id/imageViewGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/spinnerSelectorLyt"
+            app:layout_constraintBottom_toBottomOf="@id/spinnerSelectorLyt"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/orderViewPagerLyt"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trade"
+        android:paddingTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
+            android:layout_marginEnd="20dp"
+            android:minWidth="280dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/historyButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/background"
+            app:tabIndicatorColor="@color/white"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white"/>
+
+        <ImageButton
+            android:id="@+id/historyButton"
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/history"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tabLayout"
+            app:layout_constraintBottom_toBottomOf="@id/tabLayout"/>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+
+

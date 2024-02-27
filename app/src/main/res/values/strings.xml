@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="trade_dropdown_items">
+        <item>Limit</item>
+        <item>Market</item>
+        <item>Stop-Market</item>
+    </string-array>
+    <string-array name="quantity_selector_dropdown_items">
+        <item>0.01</item>
+        <item>0.1</item>
+        <item>1</item>
+        <item>10</item>
+    </string-array>
+</resources>
